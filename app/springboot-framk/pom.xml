@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.szm</groupId>
+    <artifactId>springboot-framk</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <!--指定父级依赖-->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.4.3</version>
+    </parent>
+
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!--添加依赖-->
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- 添加MYSQL组件-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-auoconfigure</artifactId>
+                </exclusion>
+            </exclusions>
+            <version>3.1.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+
+        <!-- 引入阿里数据库连接池 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.6</version>
+        </dependency>
+
+        <!-- 切面编程-->
+        <!--        aspectjweaver 是 AspectJ 框架的一部分，它提供了在 Java 应用程序中使用面向切面编程（AOP）的功能。AspectJ 是一个强大的 AOP 框架，它允许开发人员通过定义切面（Aspects）来分离关注点（concerns），从而提高代码的模块化性和可维护性。aspectjweaver 库包含了 AspectJ 编织器（weaver），它是实现 AOP 的关键组件之一。在编译时或运行时，AspectJ 编织器会将定义的切面织入到应用程序的字节码中，从而实现切面的功能。使用 aspectjweaver 可以实现各种 AOP 功能，例如：日志记录： 可以通过定义切面来捕获方法的执行，并记录方法的入参、出参以及执行时间，以实现日志记录的功能。性能监控： 可以通过定义切面来监控方法的执行时间，并收集性能统计信息，以实现性能监控和优化的功能。事务管理： 可以通过定义切面来实现事务的管理，例如在方法执行前后开启、提交或回滚事务，以实现事务管理的功能。安全控制： 可以通过定义切面来实现安全控制，例如在方法执行前进行身份认证和权限检查，以实现安全控制的功能。异常处理： 可以通过定义切面来捕获方法执行过程中抛出的异常，并进行统一的异常处理和转换，以实现异常处理的功能。aspectjweaver 库通常与 AspectJ 注解一起使用，通过在 Java 类中添加注解来定义切面，从而实现 AOP 的功能。例如，可以使用 @Aspect 注解来标记一个类为切面，并使用 @Before、@After、@Around 等注解来定义切面的具体行为。总-->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+        </dependency>
+
+        <!--Hibernate Validator 是一个用于验证 Java Bean 对象的框架，它提供了基于约束的验证功能，用于确保对象的属性值满足特定的条件和规则。这些验证规则可以通过注解方式直接应用于 Java Bean 类的属性上。Hibernate Validator 提供了一系列内置的验证约束注解，例如：@NotNull： 验证对象属性的值不能为 null。@NotEmpty： 验证字符串的值不能为 null 或空。@NotBlank： 验证字符串的值不能为 null 或空，且去除首尾空格后长度必须大于 0。@Size： 验证字符串、集合或数组的大小必须在指定范围内。@Min： 验证数值必须大于或等于指定的最小值。@Max： 验证数值必须小于或等于指定的最大值。@Email： 验证字符串必须是有效的电子邮件地址。除了以上内置的验证注解之外，Hibernate Validator 还支持自定义约束注解，以满足特定场景下的验证需求。通过编写自定义约束注解及其验证器，可以实现任意复杂的验证规则。使用 Hibernate Validator 的基本步骤包括：在 Maven 或 Gradle 项目中添加 Hibernate Validator 的依赖。在 Java Bean 类的属性上使用合适的验证注解来定义验证规则。在需要进行验证的地方（例如控制器方法中）调用 Hibernate Validator 来验证对象。Hibernate Validator 与 JSR 380（Bean Validation 2.0）兼容，因此也支持 JSR 380 中定义的验证注解。它是 Java EE 技术的一部分，可以轻松地与 Spring Framework、Spring Boot 等其他 Java 技术集成使用。总之，Hibernate Validator 是一个强大且灵活的验证框架，用于确保 Java Bean 对象的属性值符合特定的约束和规则，从而提高应用程序的数据有效性和安全性。-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.1.2.Final</version>
+        </dependency>
+
+
+        <!-- 添加实体类参数校验-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <!-- 引入JWT -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
+
+        <!-- 添加swagger2依赖 -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+
+
+        <!-- 添加单元测试-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- 添加lombok依赖 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <!--     <plugin>
+                     <groupId>org.springframework.boot</groupId>
+                     <artifactId>spring-boot-maven-plugin</artifactId>
+                 </plugin>-->
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.2</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/hzdx/conf</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources</directory>
+                                    <includes>
+                                        <exclude>**/*.txt</exclude>
+                                        <exclude>*.xml</exclude>
+                                        <exclude>**/*.conf</exclude>
+                                        <exclude>**/*.properties</exclude>
+                                        <exclude>*.yml</exclude>
+                                    </includes>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                            <encoding>UTF-8</encoding>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <outputDirectory>${project.build.directory}/hzdx</outputDirectory>
+                    <archive>
+                        <!-- 生成的jar中，不要包含pom.xml和pom.properties这两个文件 -->
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                        <manifest>
+                            <!-- 是否要把第三方jar放到manifest的classpath中 -->
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <!-- 生成的manifest中classpath的前缀，因为要把第三方jar放到lib目录下，所以classpath的前缀是lib/ -->
+                            <useUniqueVersions>false</useUniqueVersions>
+                            <mainClass>org.szm.Main</mainClass>
+                        </manifest>
+                        <manifestEntries>
+                            <class-Path>conf/</class-Path>
+                        </manifestEntries>
+                    </archive>
+                    <excludes>
+                        <exclude>*.txt</exclude>
+                        <exclude>*.sh</exclude>
+                        <exclude>*.lst</exclude>
+                        <exclude>*.xml</exclude>
+                        <exclude>*.properties</exclude>
+                        <exclude>*.yml</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.10</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/hzdx/lib</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+
+
+</project>
